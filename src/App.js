@@ -1,27 +1,26 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+const axios = require('axios');
+
 
 
 function App () {
  
+  const [sentence, setSentence] = useState('');
+
+  useEffect(()=>{
+    axios.get('https://api.hatchways.io/assessment/sentences/1')
+    .then(res=> {
+      setSentence(res.data.data.sentence);
+
+    })
+    .catch(err=>console.log(err));
+  }, [])
+  
+  
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <div className='sentence'>{sentence}</div>
       </div>
     );
   }
