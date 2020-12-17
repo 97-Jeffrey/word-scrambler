@@ -20,7 +20,7 @@ function App () {
   
     return (
       <div>
-        <div className='sentence'>{sentence}</div>
+        <div id='scrambled-word'>{sentence}</div>
       </div>
     );
   }
